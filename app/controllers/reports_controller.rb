@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
   
   def index
     @reports = Report.all
@@ -28,6 +28,8 @@ class ReportsController < ApplicationController
   end
 
   def destroy
+    @report.destroy
+    redirect_to reports_path
   end
 
   private
