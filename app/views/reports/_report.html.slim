@@ -1,0 +1,8 @@
+div class="card"
+  div class="px-3"
+    div class="card-block px-6"
+      h4 class="card-title" #{report.title}
+      p class="card-text" #{report.content}
+      br
+      = link_to 'Изменить', edit_report_path(report), class: "btn btn-primary mx-2"
+      = link_to 'Удалить', delete_report_path(report), class: "btn btn-primary mx-2"
