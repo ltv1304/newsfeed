@@ -1,6 +1,14 @@
 h2 Sign up
+-resource.build_profile
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = render "devise/shared/error_messages", resource: resource
+  = f.fields_for :profile do |profile_form|
+    div class="mb-3"
+      = profile_form.label :name, class: 'form-label'
+      = profile_form.text_field :name, autofocus: true, class: 'form-control'
+    div class="mb-3"
+      = profile_form.label :role, class: 'form-label'
+      = profile_form.select :role, [["user", "user"], ["editor", "editor"], ['admin', "admin"]], autofocus: true, class: 'form-control'
   div class="mb-3"
     = f.label :email, class: 'form-label'
     = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control'

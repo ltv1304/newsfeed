@@ -3,5 +3,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :rememberable
-  enum role: [:user, :editor, :admin]
+  has_one :profile
+  accepts_nested_attributes_for :profile
 end
