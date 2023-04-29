@@ -1,23 +1,16 @@
 nav class="navbar navbar-expand-lg sticky-top navTop"
   div class="container" id="navContainer"
-    a class="navbar-brand" id="logo" href="#" ЛЕНТА НОВОСТЕЙ
+    = link_to 'ЛЕНТА НОВОСТЕЙ', root_path, class: "navbar-brand", id: "logo"
     
     div class="collapse navbar-collapse" id="navbarSupportedContent" 
       ul class="navbar-nav mb-2 mb-lg-0 ms-auto"
-        / li class="nav-item mx-2"
-        /   div class="input-group"
-        /     span class="input-group-text" id="basic-addon1" @
-        /     input type="email" class="form-control" placeholder="Адрес эл. почты" aria-label="email" aria-describedby="basic-addon1"
-
-        / li class="nav-item mx-2"
-        /   div class="input-group"
-        /     span class="input-group-text" id="basic-addon2" *
-        /     input type="password" class="form-control" placeholder="Пароль" aria-label="password" aria-describedby="basic-addon2"
-        
-        li class="nav-item"
-          = link_to 'Войти', new_user_session_path, class: "btn btn-primary mx-2"
-          / a class="btn btn-outline-secondary mx-2" type="submit" role="button" Войти
-    
-        li class="nav-item"
-        = link_to 'Зарегистрироваться', new_user_registration_path, class: "btn btn-primary mx-2"
-          / a class="btn btn-outline-secondary mx-2" type="submit" role="button" Подписаться
+        - if !user_signed_in?
+          li class="nav-item"
+            = link_to 'Войти', new_user_session_path, class: "btn btn-primary mx-2"
+          li class="nav-item"
+          = link_to 'Зарегистрироваться', new_user_registration_path, class: "btn btn-primary mx-2"
+        - else
+          li class="nav-item"
+            = link_to 'Личный кабинет', edit_user_path(current_user), class: "btn btn-primary mx-2"
+          li class="nav-item"
+            = link_to 'Выйти', destroy_user_session_path, data: {"turbo-method": :delete}, class: "btn btn-primary mx-2"

@@ -1,2 +1,18 @@
-h1 Users#edit
-p Find me in app/views/users/edit.html.slim
+h2 Изменение карточки пользователя
+= form_for(@user) do |f|
+  = f.fields_for :profile do |profile_form|
+    div class='mb-3'
+      = profile_form.label :name, class: 'form-label'
+      = profile_form.text_field :name, class: 'form-control'
+    div class='mb-3'
+      = profile_form.label :role, class: 'form-label'
+      = profile_form.select :role, options_for_select([["абонент", "user"], ["редактор", "editor"], ['администратор', "admin"]], selected: @user.profile.role || nil), {}, {class: 'form-select'}
+    div class='mb-3'
+      = profile_form.label :mailing_period, class: 'form-label'
+      = profile_form.select :mailing_period, [["ежедневно", "daily"], ["еженедельно", "weekly"], ["не получать", "cancel"]], {}, {class: 'form-select'}
+  div class='mb-3'
+    = f.label :email, class: 'form-label'
+    = f.email_field :email, autocomplete: "email", class: 'form-control'
+  div class='mb-3'
+    = f.submit "Edit", class: "btn btn-primary"
+/ = render 'devise/shared/links'

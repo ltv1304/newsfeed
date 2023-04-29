@@ -4,7 +4,9 @@ div class="card"
       h4 class="card-title" Пользователь: #{user.profile.name}
       br
       h5 адрес электронной почты: #{user.email}
-      h5 статус: #{user.profile.role} 
+      h5 статус: #{user.profile.role}
+      - if user.profile.role == 'user'
+        h5 периодичность рассылки: #{user.profile.mailing_period}
       h5 зарегистрирован: #{user.created_at}
       br
       = link_to 'Изменить', edit_user_path(user), class: "btn btn-primary"

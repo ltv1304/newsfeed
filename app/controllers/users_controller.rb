@@ -13,6 +13,12 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.update post_params
+      redirect_to action: "index"
+    else
+      # flash.now[:danger] = 'Статья не обновлена'
+      render :edit
+    end
   end
 
   def destroy
@@ -24,5 +30,9 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+  
+  def post_params
+    params.require(:user).permit(:email, profile_attributes: [:name, :role, :mailing_period])
   end
 end
