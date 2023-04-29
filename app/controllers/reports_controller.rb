@@ -9,26 +9,38 @@ class ReportsController < ApplicationController
   end
 
   def new
+    @report = Report.new
   end
 
   def edit
   end
 
   def create
+    @report = Report.new post_params
+    if @report.save
+      flash[:success] = "Новость создана"
+      redirect_to action: "index"
+    else
+      flash.now[:danger] = 'Новость не создана'
+      render :new
+    end
   end
 
   def update
     @report.editions_count += 1
-    if @report.update post_params
+    @report.attributes = post_params
+    if @report.save context: current_user.profile.role == 'editor' ? :editor : nil
+      flash[:success] = "Новость обновлена"
       redirect_to action: "index"
     else
-      # flash.now[:danger] = 'Статья не обновлена'
+      flash.now[:danger] = 'Новость не изменена'
       render :edit
     end
   end
 
   def destroy
     @report.destroy
+    flash[:info] = "Новость удалена"
     redirect_to reports_path
   end
 

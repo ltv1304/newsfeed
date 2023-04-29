@@ -12,5 +12,6 @@ html
   body
     == render "shared/header"
     div class="container card-block"
-      div class="row col-md-8 offset-md-2"  
+      div class="row col-md-8 offset-md-2"
+        == render "shared/flash_messages"
         = yield

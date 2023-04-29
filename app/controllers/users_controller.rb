@@ -14,15 +14,17 @@ class UsersController < ApplicationController
 
   def update
     if @user.update post_params
+      flash[:success] = "Карточка пользователя изменена"
       redirect_to action: "index"
     else
-      # flash.now[:danger] = 'Статья не обновлена'
+      flash.now[:danger] = "Неудалось изменить карточку пользователя"
       render :edit
     end
   end
 
   def destroy
     @user.destroy
+    flash[:info] = "Карточка пользователя удалена"
     redirect_to users_path
   end
 

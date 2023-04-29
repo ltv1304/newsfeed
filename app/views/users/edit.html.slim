@@ -1,5 +1,6 @@
 h2 Изменение карточки пользователя
 = form_for(@user) do |f|
+  = render 'shared/error_messages', resource: @user
   = f.fields_for :profile do |profile_form|
     div class='mb-3'
       = profile_form.label :name, class: 'form-label'
@@ -14,5 +15,6 @@ h2 Изменение карточки пользователя
     = f.label :email, class: 'form-label'
     = f.email_field :email, autocomplete: "email", class: 'form-control'
   div class='mb-3'
-    = f.submit "Edit", class: "btn btn-primary"
+    = f.submit "Edit", class: "btn btn-primary", data: { turbo: false }
+    = link_to "Отменить", root_path, class: "btn btn-secondary mx-2"
 / = render 'devise/shared/links'

@@ -5,4 +5,4 @@ div class="card"
       p class="card-text" #{report.content}
       br
       = link_to 'Изменить', edit_report_path(report), class: "btn btn-primary"
-      = link_to 'Удалить', report_path(report), data: {"turbo-method": :delete, 'turbo-confirm': 'Вы уверены?'}, class: "btn btn-primary mx-2"
+      = link_to 'Удалить', report_path(report), data: {"turbo-method": :delete, 'turbo-confirm': 'Вы уверены?'}, class: "btn btn-danger mx-2"

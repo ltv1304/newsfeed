@@ -1,4 +1,16 @@
 = form_for(@report) do |f|
+  h5 Редактирование статьи
+  = render 'shared/error_messages', resource: @report
+  - if @report.editions_count == 3
+    div class="alert alert-warning"
+      = "Редакция № #{@report.editions_count+1}. Внимание: это крайняя редация!!!"
+  - elsif @report.editions_count > 3
+    div class="alert alert-danger"
+      = "Редакций #{@report.editions_count}. Внимание: редактирование запрещено!!!"
+  -else 
+    div class="alert alert-info"
+      = "Редакция № #{@report.editions_count+1}."
+  br
   div class="mb-3"
     = f.label :title, 'Заголовок статьи', class: 'form-label'
     = f.text_field :title, class: 'form-control'
@@ -6,6 +18,6 @@
     = f.label :content, 'Содержание', class: 'form-label'
     = f.text_area :content, class: 'form-control', rows: 5
   div class="mb-3"
-    = f.submit "Сохранить", class: "btn btn-primary float-end mx-2"
-    = link_to "Отменить", :back, class: "btn btn-primary float-end mx-2"
+    = f.submit "Сохранить", class: "btn btn-primary", data: { turbo: false }
+    = link_to "Отменить", root_path, class: "btn btn-secondary mx-2"
 
