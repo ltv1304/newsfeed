@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_28_215047) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_29_093537) do
   create_table "profiles", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "role"
     t.text "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_profiles_on_user_id"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_profiles_on_user_id", unique: true
   end
 
   create_table "reports", force: :cascade do |t|
@@ -38,4 +38,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_28_215047) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "profiles", "users"
 end

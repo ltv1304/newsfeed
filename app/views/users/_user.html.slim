@@ -1,8 +1,11 @@
 div class="card"
   div class="px-3"
     div class="card-block px-6"
-      h4 class="card-title" #{user.email}
-      /p class="card-text" #{report.content}
+      h4 class="card-title" Пользователь: #{user.profile.name}
       br
-      = link_to 'Изменить', edit_user_path(user), class: "btn btn-primary mx-2"
+      h5 адрес электронной почты: #{user.email}
+      h5 статус: #{user.profile.role} 
+      h5 зарегистрирован: #{user.created_at}
+      br
+      = link_to 'Изменить', edit_user_path(user), class: "btn btn-primary"
       = link_to 'Удалить', user_path(user), data: {"turbo-method": :delete, 'turbo-confirm': 'Вы уверены?'}, class: "btn btn-primary mx-2"
