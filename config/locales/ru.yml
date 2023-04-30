@@ -18,3 +18,8 @@ ru:
       header: 'Редактирование новостной статьи'
       action: 'Редакция'
       hold_action: 'Редакций'
+  postman_mailer:
+    daily_digest:
+      header: 'Интересное за день'
+    weekly_digest:
+      header: 'Интересное за неделю'
