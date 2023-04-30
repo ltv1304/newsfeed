@@ -39,6 +39,8 @@ class ReportsController < ApplicationController
   end
 
   def destroy
+    users_list = User.joins(:profile).where(profile: {role: 'user', mailing_period: 'daily'}).map(&:email)
+    PostmanMailer.with(users: users_list).daily_digest.deliver_later
     @report.destroy
     flash[:info] = "Новость удалена"
     redirect_to reports_path
