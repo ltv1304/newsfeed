@@ -1,0 +1,29 @@
+ru:
+  activerecord:
+    models:
+      report: 'новость'
+      user: 'пользователь'
+      profile: 'профиль'
+    attributes:
+      report:
+        title: 'название'
+        content: 'содержание'
+        editions_count: 'количество редакций'
+      user:
+        password: 'пароль'
+        email: 'адрес электронной почты'
+        password_confirmation: 'подтверждение пароля'
+        created_at: 'зарегистрирован'
+        remember_me: 'запомнить меня'
+      profile:
+        name: 'имя пользователя'
+        mailing_period: 'периодичность рассылки'
+        mailing_periods:
+          daily: 'ежедневно'
+          weekly: 'еженедельно'
+          cancel: 'не получать'
+        role: 'статус пользователя'
+        roles:
+          admin: 'администратор'
+          user: 'подписчик'
+          editor: 'редактор'

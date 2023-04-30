@@ -1,11 +1,3 @@
 = form_for(@report) do |f|
-  = render 'shared/error_messages', resource: @report
-  div class="mb-3"
-    = f.label :title, 'Заголовок статьи', class: 'form-label'
-    = f.text_field :title, class: 'form-control'
-  div class="mb-3"
-    = f.label :content, 'Содержание', class: 'form-label'
-    = f.text_area :content, class: 'form-control', rows: 5
-  div class="mb-3"
-    = f.submit "Опубликовать", class: "btn btn-primary mx-2", data: { turbo: false }
-    = link_to "Отменить", root_path, class: "btn btn-secondary mx-2"
+  = render "shared/error_messages", resource: @report
+  = render "form", f: f, report: @report

@@ -1,0 +1,20 @@
+ru:
+  common:
+    errors: 'Ошибки при заполнении формы'
+    edit: 'Изменить'
+    delete: 'Удалить'
+    cancel: 'Отмена'
+    confirm: 'Вы уверены?'
+    submit: 'Сохранить'
+    sign_up: 'Зарегистрироваться'
+    sign_in: 'Войти'
+    logo: 'ЛЕНТА НОВОСТЕЙ'
+    profile: 'Личный кабинет'
+    log_out: 'Выход'
+  reports:
+    form:
+      submit: '%{action} статью'
+    edit:
+      header: 'Редактирование новостной статьи'
+      action: 'Редакция'
+      hold_action: 'Редакций'

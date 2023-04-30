@@ -1,16 +1,16 @@
 nav class="navbar navbar-expand-lg sticky-top navTop"
   div class="container" id="navContainer"
-    = link_to 'ЛЕНТА НОВОСТЕЙ', root_path, class: "navbar-brand", id: "logo"
+    = link_to t("common.logo"), root_path, class: "navbar-brand", id: "logo"
     
     div class="collapse navbar-collapse" id="navbarSupportedContent" 
       ul class="navbar-nav mb-2 mb-lg-0 ms-auto"
         - if !user_signed_in?
           li class="nav-item"
-            = link_to 'Войти', new_user_session_path, class: "btn btn-primary mx-2"
+            = link_to t("common.sign_in"), new_user_session_path, class: "btn btn-primary mx-2"
           li class="nav-item"
-          = link_to 'Зарегистрироваться', new_user_registration_path, class: "btn btn-primary mx-2"
+          = link_to t("common.sign_up"), new_user_registration_path, class: "btn btn-primary mx-2"
         - else
           li class="nav-item"
-            = link_to 'Личный кабинет', edit_user_path(current_user), class: "btn btn-primary mx-2"
+            = link_to t("common.profile"), edit_user_path(current_user), class: "btn btn-primary mx-2"
           li class="nav-item"
-            = link_to 'Выйти', destroy_user_session_path, data: {"turbo-method": :delete}, class: "btn btn-primary mx-2"
+            = link_to t("common.log_out"), destroy_user_session_path, data: {"turbo-method": :delete}, class: "btn btn-primary mx-2"
