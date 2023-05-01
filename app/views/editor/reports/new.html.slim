@@ -1,3 +1,3 @@
-= form_for(@report) do |f|
+= form_for [:editor, @report] do |f|
   = render "shared/error_messages", resource: @report
   = render "form", f: f, report: @report

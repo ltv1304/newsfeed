@@ -4,5 +4,12 @@ div class="card"
       h4 class="card-title" #{report.title}
       p class="card-text" #{report.content}
       br
-      = link_to t("common.edit"), edit_report_path(report), class: "btn btn-primary"
-      = link_to t("common.delete"), report_path(report), data: {"turbo-method": :delete, "turbo-confirm": "Вы уверены?"}, class: "btn btn-danger mx-2"
+      - if current_page?(root_path)
+        = link_to t(".show"), report_path(report), class: "btn btn-primary"
+      - else
+        = link_to t("common.back"), :back, class: "btn btn-primary"
+      - if user_signed_in?
+        -if Profile.roles[current_user.profile.role] > 0
+          = link_to t("common.edit"), edit_editor_report_path(report), class: "btn btn-warning mx-2"
+          -if current_user.profile.role == 'admin'
+            = link_to t("common.delete"), admin_report_path(report), data: {"turbo-method": :delete, "turbo-confirm": t("common.confirm")}, class: "btn btn-danger"

@@ -1,36 +1,42 @@
 h2
-  | Edit #{resource_name.to_s.humanize}
+  = t(".header")
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   = render "devise/shared/error_messages", resource: resource
-  .field
-    = f.label :email
-    br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
+  div class="mb-3"
+    = f.label :email, class: "form-label"
+    = f.email_field :email, class: "form-control"
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     div
       | Currently waiting confirmation for: #{resource.unconfirmed_email}
-  .field
-    = f.label :password
-    i (leave blank if you don't want to change it)
-    br/
-    = f.password_field :password, autocomplete: "new-password"
+  div class="mb-3"
+    = f.label :password, class: "form-label"
+    = f.password_field :password, class: "form-control"
     - if @minimum_password_length
-      br/
       em
-        = @minimum_password_length
-        | characters minimum
-  .field
-    = f.label :password_confirmation
-    br/
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .field
-    = f.label :current_password
-    i (we need your current password to confirm your changes)
-    br/
-    = f.password_field :current_password, autocomplete: "current-password"
+        | (#{t('.chars_min', count: @minimum_password_length)})
+  div class="mb-3"
+    = f.label :password_confirmation, class: "form-label"
+    = f.password_field :password_confirmation, class: "form-control"
+  div class="mb-3"
+    = f.label :current_password, class: "form-label"
+    = f.password_field :current_password, class: "form-control"
+    
+    = f.fields_for :profile do |profile_form|
+      div class="mb-3"
+        = profile_form.label :name, class: "form-label"
+        = profile_form.text_field :name, class: "form-control"
+      -if current_user.profile.role == 'admin'
+        div class="mb-3"
+          = profile_form.label :role, class: "form-label"
+          = profile_form.select :role, options_for_select(Profile.role_attributes_for_select, @user.profile.role || nil), {}, {class: "form-select"}
+      div class="mb-3"
+        = profile_form.label :mailing_period, class: "form-label"
+        = profile_form.select :mailing_period, options_for_select(Profile.mailing_period_attributes_for_select), {}, {class: "form-select"}
   .actions
-    = f.submit "Update"
-h3 Cancel my account
+    = f.submit t('common.submit'), class: "btn btn-primary", data: { turbo: false }
+    = link_to t("common.cancel"), :back, class: "btn btn-secondary mx-2"
+  br/
+h5 
+  = t(".cancel_account")
 div
-  | Unhappy? #{button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete}
-= link_to "Back", :back
+  = button_to t("common.delete"), root_path, data: {"turbo-method": :delete, "turbo-confirm": t("common.confirm")}, class: "btn btn-danger" 

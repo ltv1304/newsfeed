@@ -1,0 +1,2 @@
+module Editor::ReportsHelper
+end

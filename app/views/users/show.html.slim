@@ -1,2 +1,17 @@
-h1 Users#show
-p Find me in app/views/users/show.html.slim
+-if current_user.profile.role == 'admin'
+  = link_to t("common.users_list"), admin_users_path, class: "btn btn-primary"
+div class="card"
+  div class="px-3"
+    div class="card-block px-6"
+      h4 class="card-title" #{t("activerecord.models.user")}: #{@user.profile.name}
+      br
+      h5 #{t("activerecord.attributes.user.email")}: #{@user.email}
+      h5 #{t("activerecord.attributes.profile.role")}: #{t("activerecord.attributes.profile.roles."+@user.profile.role)}
+      - if @user.profile.role == 'user'
+        h5 #{t("activerecord.attributes.profile.mailing_period")}: #{t("activerecord.attributes.profile.mailing_periods."+@user.profile.mailing_period)}
+      h5 #{t("activerecord.attributes.user.created_at")}: #{l @user.created_at, format: :long}
+      br
+      = link_to t("common.back"), :back, class: "btn btn-primary"
+      = link_to t("common.edit"), edit_user_registration_path(@user), class: "btn btn-warning mx-2"
+      -if current_user.profile.role == 'admin'
+        = link_to t("common.delete"), user_path, data: {"turbo-method": :delete, 'turbo-confirm': t("common.confirm")}, class: "btn btn-danger"

@@ -11,6 +11,7 @@ ru:
         editions_count: 'количество редакций'
       user:
         password: 'пароль'
+        current_password: 'текущий пароль'
         email: 'адрес электронной почты'
         password_confirmation: 'подтверждение пароля'
         created_at: 'зарегистрирован'

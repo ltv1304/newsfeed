@@ -11,15 +11,25 @@ ru:
     logo: 'ЛЕНТА НОВОСТЕЙ'
     profile: 'Личный кабинет'
     log_out: 'Выход'
+    back: 'Вернуться'
+    users_list: 'Список пользователей'
+  editor:
+    reports:
+      form:
+        submit: '%{action} статью'
+      edit:
+        header: 'Редактирование новостной статьи'
+        action: 'Редакция'
+        hold_action: 'Редакций'
   reports:
-    form:
-      submit: '%{action} статью'
-    edit:
-      header: 'Редактирование новостной статьи'
-      action: 'Редакция'
-      hold_action: 'Редакций'
+    report:
+      show: 'Подробнее'
   postman_mailer:
     daily_digest:
       header: 'Интересное за день'
     weekly_digest:
       header: 'Интересное за неделю'
+  admin:
+    users:
+      index:
+        show: 'Подробнее'
