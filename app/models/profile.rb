@@ -1,5 +1,6 @@
 class Profile < ApplicationRecord
-    validates :name, presence: true
+    validates :name, presence: true, 
+                      length: {maximum: 50}
     belongs_to :user
     enum role: [:user, :editor, :admin]
     enum mailing_period: [:daily, :weekly, :cancel] 

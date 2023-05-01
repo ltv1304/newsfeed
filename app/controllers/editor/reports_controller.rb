@@ -45,7 +45,7 @@ class Editor::ReportsController < ApplicationController
   end
 
   def check_policy
-    if !current_user.profile.editor?
+    if Profile.roles[current_user.profile.role] < 1
         flash[:warning] = 'У Вас нет прав на совершаемое действие. Обратитесь к администратору'
         redirect_to root_path
     end
