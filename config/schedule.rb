@@ -17,7 +17,7 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
-# Learn more: http://github.com/javan/whenever
+# # Learn more: http://github.com/javan/whenever
 env :PATH, ENV['PATH']
 env :PATH, ENV['PATH']
 env :BROWSER, "/usr/bin/firefox"
@@ -32,6 +32,6 @@ every '0 7 * * 1-7' do
     runner "DailyMailingJob.new.perform"
 end
 
-every '0 7 0 0 1' do
+every '0 7 * * 1' do
     runner "WeeklyMailingJob.new.perform"
 end
